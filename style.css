@@ -1,0 +1,141 @@
+/* General */
+body {
+  margin:0;
+  min-height:100vh;
+  background: linear-gradient(135deg, #1a001a, #3a003a);
+  font-family: 'Montserrat', sans-serif;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+/* Contenedores */
+.container {
+  background: rgba(20,0,20,0.95);
+  padding:40px;
+  border-radius:20px;
+  width:450px;
+  max-width:90%;
+  text-align:center;
+  box-shadow: 0 0 60px rgba(255,0,255,0.7);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 80px rgba(255,0,255,0.9);
+}
+
+.card {
+  background: rgba(50,0,50,0.8);
+  border-radius:15px;
+  padding:20px;
+  margin:20px 0;
+  box-shadow: 0 0 20px rgba(255,102,255,0.5);
+}
+
+/* PANEL DE REGISTRO */
+.registro-panel {
+  background: linear-gradient(135deg, rgba(100,0,100,0.9), rgba(60,0,60,0.9));
+  border: 2px solid #ff33ff;
+  padding: 25px;
+  box-shadow: 0 0 40px rgba(255,0,255,0.7);
+}
+
+.registro-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 60px rgba(255,0,255,0.9);
+}
+
+/* Títulos */
+h1 {
+  color:#ff33ff;
+  font-size:28px;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff66ff;
+}
+
+h2 {
+  color:#ff99ff;
+  margin-top:20px;
+}
+
+.subtitulo {
+  font-size:16px;
+  color:#ffb3ff;
+  margin-bottom:20px;
+  font-weight:500;
+}
+
+/* Texto y listas */
+.descripcion {
+  font-size:14px;
+  line-height:1.6;
+  margin:10px 0;
+}
+
+.info-segura {
+  font-size: 13px;
+  color: #e0c0ff;
+  margin-bottom: 15px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+ul {
+  text-align:left;
+  margin-left:20px;
+  line-height:1.5;
+}
+
+/* Inputs y botones */
+input {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+button, .btn-principal {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:10px;
+  background: linear-gradient(45deg, #9400ff, #ff00ff);
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+  text-transform:uppercase;
+  box-shadow: 0 0 15px #ff00ff;
+  transition:0.3s;
+}
+
+button:hover, .btn-principal:hover {
+  background: linear-gradient(45deg, #b300ff, #ff66ff);
+  box-shadow: 0 0 25px #ff66ff;
+}
+
+.btn-secundario {
+  background:#222;
+  color:#ff33ff;
+  border:1px solid #ff33ff;
+  box-shadow:none;
+}
+
+.btn-secundario:hover {
+  background:#111;
+  color:#ff99ff;
+}
+
+/* Mensaje de error */
+#mensaje {
+  font-weight:bold;
+  margin-top:10px;
+  color:#ff6666;
+}

